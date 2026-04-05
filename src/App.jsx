@@ -235,18 +235,36 @@ function saveDressing(items) {
 
 // ─── Swipe looks data ────────────────────────────────────────────────────────
 const SWIPE_LOOKS = [
-  { id:1, img:"https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&q=80", tags:["minimal","monochrome","casual"] },
-  { id:2, img:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80", tags:["streetwear","bold","oversized"] },
-  { id:3, img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80", tags:["business","classic","tailored"] },
-  { id:4, img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80", tags:["minimal","feminine","elegant"] },
-  { id:5, img:"https://images.unsplash.com/photo-1511485977113-f34c92461ad9?w=600&q=80", tags:["evening","dark","sophisticated"] },
-  { id:6, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80", tags:["streetwear","sneakers","casual"] },
-  { id:7, img:"https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?w=600&q=80", tags:["minimal","neutral","relaxed"] },
-  { id:8, img:"https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=80", tags:["smart-casual","layered","classic"] },
-  { id:9, img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80", tags:["feminine","colorful","editorial"] },
-  { id:10, img:"https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&q=80", tags:["casual","sporty","modern"] },
-  { id:11, img:"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80", tags:["minimal","monochrome","chic"] },
-  { id:12, img:"https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80", tags:["bohemian","relaxed","natural"] },
+  // Homme — Sartorial formel
+  { id:1, img:"https://images.unsplash.com/photo-1594938298603-c8148c4b5d5e?w=600&q=80", tags:["sartorial","formal","tailored","classique"] },
+  // Homme — Classy chic méditerranéen
+  { id:2, img:"https://images.unsplash.com/photo-1600878459138-e1123b37cb30?w=600&q=80", tags:["méditerranéen","élégant","sartorial","chic"] },
+  // Homme — Urbain proportions
+  { id:3, img:"https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&q=80", tags:["urbain","moderne","proportions","smart"] },
+  // Homme — Jeanwear Steve McQueen
+  { id:4, img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80", tags:["jeanwear","roots","intemporel","masculin"] },
+  // Homme — Streetwear belles proportions
+  { id:5, img:"https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=80", tags:["streetwear","urbain","casual","moderne"] },
+  // Homme — Casual workwear
+  { id:6, img:"https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&q=80", tags:["workwear","casual","décontracté","smart"] },
+  // Homme — Smart casual intemporel
+  { id:7, img:"https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80", tags:["smart-casual","intemporel","élégant","classique"] },
+  // Femme — Femme fatale sophistiquée
+  { id:8, img:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80", tags:["femme-fatale","sophistiqué","élégant","sensuel"] },
+  // Femme — Workwear classy
+  { id:9, img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80", tags:["workwear","classique","professionnel","chic"] },
+  // Femme — Bobo loose
+  { id:10, img:"https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80", tags:["bobo","décontracté","naturel","libre"] },
+  // Femme — Chic décontracté
+  { id:11, img:"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80", tags:["chic","décontracté","élégant","casual"] },
+  // Femme — Sexy raffiné
+  { id:12, img:"https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=600&q=80", tags:["sexy","raffiné","féminin","élégant"] },
+  // Femme — Standard chic
+  { id:13, img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80", tags:["classique","féminin","intemporel","sobre"] },
+  // Femme — Méditerranéen estival
+  { id:14, img:"https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80", tags:["méditerranéen","estival","féminin","élégant"] },
+  // Mixte — Editorial intemporel
+  { id:15, img:"https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80", tags:["editorial","intemporel","minimal","chic"] },
 ];
 
 function buildStyleProfile(liked, disliked) {
@@ -256,17 +274,22 @@ function buildStyleProfile(liked, disliked) {
   const top = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0,3).map(e => e[0]);
 
   const profiles = {
-    minimal: "Vous êtes attiré par l'épure — les silhouettes nettes, les palettes sobres, le soin du détail plutôt que l'accumulation.",
-    streetwear: "Votre style porte une énergie urbaine assumée — volumes, textures et références culturelles fortes.",
-    business: "Vous appréciez la coupe et la rigueur — un vestiaire structuré qui inspire confiance et distinction.",
-    elegant: "L'élégance est votre langage naturel — des pièces intemporelles, des matières nobles, une allure posée.",
-    bold: "Vous n'avez pas peur de l'affirmation — couleurs, contrastes et pièces à fort caractère vous définissent.",
+    sartorial: "Vous incarnez l'élégance construite — la coupe prime sur tout, chaque pièce est choisie pour sa juste silhouette.",
+    élégant: "L'élégance est votre langage naturel — des pièces intemporelles, des matières nobles, une allure posée.",
+    méditerranéen: "Votre style respire la chaleur et la nonchalance du Sud — des pièces fluides, des tons naturels, une aisance assumée.",
+    streetwear: "Votre style porte une énergie urbaine affirmée — volumes pensés, proportions maîtrisées, références culturelles fortes.",
+    intemporel: "Vous investissez dans le durable — des classiques revisités, une garde-robe qui traverse les saisons sans vieillir.",
+    chic: "Votre chic est instinctif — entre raffinement et décontraction, vous trouvez toujours le bon équilibre.",
+    workwear: "Vous habillez votre ambition — un vestiaire structuré, précis, qui inspire confiance sans sacrifier le style.",
+    féminin: "Votre féminité s'exprime avec subtilité — des silhouettes qui mettent en valeur sans jamais en faire trop.",
+    "femme-fatale": "Vous assumez votre présence — des pièces qui marquent les esprits, une allure qui se souvient.",
+    casual: "Votre décontraction a du style — rien n'est laissé au hasard, même dans les tenues les plus simples.",
     default: "Votre style est pluriel et instinctif — vous puisez dans plusieurs univers pour composer un vestiaire qui vous ressemble."
   };
 
   const dominant = top[0] || "default";
   const desc = profiles[dominant] || profiles.default;
-  const name = top.length ? top.slice(0,2).join(" · ") : "Personnel";
+  const name = top.length ? top.slice(0,2).map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(" · ") : "Personnel";
 
   return { name, desc, tags: top };
 }
